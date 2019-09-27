@@ -1,4 +1,4 @@
-package com.infosys.DigitalSignage.model;
+package com.infosys.ds.model;
 
 public class ContentType {
 
