@@ -12,6 +12,7 @@ import { AdminComponent } from './admin/admin.component';
 import { ClientComponent } from './client/client.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AngularSplitModule } from 'angular-split';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { AngularSplitModule } from 'angular-split';
     MatSliderModule,
     MatIconModule,
     MatSidenavModule,
+    MatButtonModule,
     AngularSplitModule.forRoot()
   ],
   providers: [],
