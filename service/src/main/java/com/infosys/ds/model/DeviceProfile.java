@@ -5,6 +5,15 @@ private Integer profileId;
 private String profileDesc;
 private Integer height;
 private Integer width;
+public DeviceProfile() {
+	// TODO Auto-generated constructor stub
+}
+public DeviceProfile(String profileDesc, Integer height, Integer width) {
+	super();
+	this.profileDesc = profileDesc;
+	this.height = height;
+	this.width = width;
+}
 public Integer getProfileId() {
 	return profileId;
 }
