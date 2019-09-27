@@ -1,0 +1,72 @@
+
+<div class="test">
+<h1 mat-dialog-title>Hi {{data.name}}</h1>
+
+<!---div mat-dialog-content>
+  <p>type</p>
+  <mat-radio-group
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="type">
+  <mat-radio-button class="example-radio-button" *ngFor="let type of types" [value]="type">
+    {{type}}
+  </mat-radio-button>
+</mat-radio-group>
+<div>Your selected type is: {{type}}</div>
+</div-->
+
+<mat-form-field>
+  <mat-label>Select Resolution</mat-label>
+  <mat-select  [(value)]="data.res">
+    <mat-option *ngFor="let r of res"  [value]="r.viewValue">
+      {{r.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div mat-dialog-content>
+    <!-- <p>Country</p> -->
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.Country" placeholder="Country">
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-content>
+    <!-- <p>State</p> -->
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.State" placeholder="State">
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-content>
+    <!--p>City</p-->
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.City" placeholder="City">
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-content>
+    <!--p>Area</p-->
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.Area" placeholder="Area">
+    </mat-form-field>
+  </div>
+
+  <div mat-dialog-content>
+    <!--p>Locality</p-->
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.Locality" placeholder="Locality">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+    <!-->p>Desc</p-->
+    <mat-form-field>
+      <input matInput [(ngModel)]="data.Desc" placeholder="description">
+    </mat-form-field>
+  </div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()" style="margin-right: 30px">No Thanks</button>
+    <button mat-button  [mat-dialog-close] (click)="onOkClick()" cdkFocusInitial>Ok</button>
+</div>
+</div>
