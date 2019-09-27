@@ -1,0 +1,30 @@
+.rotate-cw-90 {
+  -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.content{
+  // display: flex;
+  // flex-direction: column;
+  height:100%;
+  overflow: hidden;
+}
+
+.content-body{
+
+}
+
+.footer-split-div {
+  // bottom: 0;
+  // position: absolute;
+  // align-self: flex-end;
+  align-content: center;
+  text-align: center;
+  justify-items: center;
+  margin-bottom:10px;
+  position:sticky;
+  z-index: 1000;
+}

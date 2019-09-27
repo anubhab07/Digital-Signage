@@ -12,4 +12,12 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
   }
 
+  splitVertical() {
+
+  }
+
+  splitHorizontal() {
+
+  }
+
 }
