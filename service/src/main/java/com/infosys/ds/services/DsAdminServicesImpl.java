@@ -19,9 +19,11 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
 import com.infosys.ds.model.City;
+import com.infosys.ds.model.Device;
 import com.infosys.ds.model.DeviceProfile;
 import com.infosys.ds.model.Location;
 import com.infosys.ds.response.CityDataResponse;
+import com.infosys.ds.response.DeviceDataResponse;
 import com.infosys.ds.response.ProductRequest;
 
 @Service
@@ -133,6 +135,16 @@ public class DsAdminServicesImpl implements DsAdminServices {
 		    
 		 
 		return key;
+	}
+	@Override
+	public DeviceDataResponse getDeviceInfo(Integer device_id) {
+		Integer exists = jdbcTemplate.queryForObject("Select count(*) from digi_sign.device dd where dd.device_id="+device_id,Integer.class);
+		if(exists==1) {
+			Device device = jdbcTemplate.queryForObject("Select * from digi_sign.device dd where dd.device_id="+device_id,Device.class);
+		}
+		
+		
+		return null;
 	}
 
 }

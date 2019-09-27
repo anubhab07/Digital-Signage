@@ -6,6 +6,7 @@ import com.infosys.ds.model.City;
 import com.infosys.ds.model.DeviceProfile;
 import com.infosys.ds.model.Location;
 import com.infosys.ds.response.CityDataResponse;
+import com.infosys.ds.response.DeviceDataResponse;
 import com.infosys.ds.response.ProductRequest;
 
 public interface DsAdminServices {
@@ -18,4 +19,6 @@ public interface DsAdminServices {
 	Location getLocation(Location location);
 	
 	BigInteger createDevice(ProductRequest productRequest);
+
+	DeviceDataResponse getDeviceInfo(Integer device_id);
 }
