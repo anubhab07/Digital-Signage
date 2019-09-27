@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.infosys.DigitalSignage.model;
+package com.infosys.ds.model;
 
 /**
  * @author Artha

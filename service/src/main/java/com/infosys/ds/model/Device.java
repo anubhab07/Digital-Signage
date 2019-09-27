@@ -1,7 +1,4 @@
-package com.infosys.DigitalSignage.model;
-
-import lombok.Data;
-
+package com.infosys.ds.model;
 
 public  class Device{
 	private Integer deviceId;
