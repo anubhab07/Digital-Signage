@@ -13,13 +13,16 @@ import { ClientComponent } from './client/client.component';
 import { LayoutComponent } from './layout/layout.component';
 import { AngularSplitModule } from 'angular-split';
 import {MatButtonModule} from '@angular/material/button';
+import { DragDirective } from './drag-drop.directive';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AdminComponent,
     ClientComponent,
-    LayoutComponent
+    LayoutComponent,
+    DragDirective
   ],
   imports: [
     BrowserModule,

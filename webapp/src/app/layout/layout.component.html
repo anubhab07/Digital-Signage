@@ -1,30 +1,56 @@
-<as-split direction="horizontal" gutterSize="2">
-  <as-split-area>
-    <div class="content d-flex bd-highlight flex-column">
-      <div class="content-body flex-grow-1">Test</div>
-      <div class="footer-split-div">
-        <button
-          mat-mini-fab
-          color="primary"
-          aria-label="Vertical Split"
-          (click)="splitVertical()"
+<as-split direction="horizontal" gutterSize="1" #mainContent>
+  <as-split-area #innerBody *ngFor="let layout of layoutLstVert">
+    <as-split direction="vertical" *ngIf="layout.childArr.length > 0" gutterSize="1">
+      <as-split-area *ngFor="let child of layout.childArr" #innerChild
         >
-          <mat-icon>pause</mat-icon>
-        </button>
-        &nbsp;
-        <button
-          class="rotate-cw-90"
-          mat-mini-fab
-          color="primary"
-          aria-label="Horizontal split"
-          (click)="splitHorizontal()"
-        >
-          <mat-icon>pause</mat-icon>
-        </button>
-      </div>
-    </div>
-    <!-- <p>
-          <button type="button" class="close" aria-label="Close"></button>
-        </p> -->
+        <div class="content " >
+          <div class="content-body" >
+            <div *ngIf="!child.file" class="col-12 rmpm dropzone" appDrag (files)="filesDropped($event, layout, child, innerChild)">
+                <div class="centered">Drop your file here!</div>
+            </div>
+            <div *ngIf="child.file" >
+              <img [src]="child.url" class="sampleImg">
+            </div>
+          </div>
+          <div class="footer-split-div">
+              <!-- <button
+              mat-mini-fab
+              color="primary"
+              aria-label="Vertical Split"
+              label="uploadContent"
+            >
+              <mat-icon>add</mat-icon> -->
+              <!-- <input type="file" name="uploadContent" (change)="onFileChanged($event)"> -->
+            <!-- </button>&nbsp; -->
+            <button
+              mat-mini-fab
+              color="primary"
+              aria-label="Vertical Split"
+              (click)="splitVertical()"
+            >
+              <mat-icon>pause</mat-icon>
+            </button>
+            &nbsp;
+            <button
+              class="rotate-cw-90"
+              mat-mini-fab
+              color="primary"
+              aria-label="Horizontal split"
+              (click)="splitHorizontal(layout)"
+            >
+              <mat-icon>pause</mat-icon>
+            </button>
+          </div>
+        </div>
+      </as-split-area>
+    </as-split>
   </as-split-area>
 </as-split>
+
+<ng-template #splitTemplate>
+  <as-split direction="vertical" gutterSize="1">
+    <as-split-area>
+      Test2
+    </as-split-area>
+  </as-split>
+</ng-template>
