@@ -90,7 +90,7 @@ public class ContentService {
 		if (content == null)
 			return "";
 		try {
-			if (content.getChildArr() != null & !content.getChildArr().isEmpty())
+			if (content.getChildArr() != null && !content.getChildArr().isEmpty())
 				return saveContentList(content.getChildArr());
 			Content contentBody = new Content();
 			contentBody.setContentBody(content.getBase64Url());
