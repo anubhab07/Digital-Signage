@@ -1,6 +1,7 @@
 package com.infosys.ds.controller;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonParser;
 import com.infosys.ds.model.DeviceProfile;
 import com.infosys.ds.response.CityDataResponse;
+import com.infosys.ds.response.DeviceDataResponse;
 import com.infosys.ds.response.ProductRequest;
 import com.infosys.ds.services.DsAdminServices;
 
@@ -48,12 +50,21 @@ public class AdminController {
 	}
 	
 	@PostMapping(path="/fetchProduct/{id}",produces=MediaType.APPLICATION_JSON_VALUE)
-	public Integer getProfileId(@PathVariable("id") Integer device_id) {
+	public DeviceDataResponse getProfileId(@PathVariable("id") Integer device_id) {
 	
 		
-
+		DeviceDataResponse deviceInfo = dsAdminServices.getDeviceInfo(device_id);
 		
-		return device_id;
+		return deviceInfo;
+		
+	}
+	@GetMapping(path="/fetchAllDevices",produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<DeviceDataResponse> getProfileId() {
+	
+		
+		List<DeviceDataResponse> deviceInfo = dsAdminServices.getAllDevicesInfo();
+		
+		return deviceInfo;
 		
 	}
 	

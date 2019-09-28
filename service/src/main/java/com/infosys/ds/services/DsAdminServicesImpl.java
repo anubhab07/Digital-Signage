@@ -138,13 +138,34 @@ public class DsAdminServicesImpl implements DsAdminServices {
 	}
 	@Override
 	public DeviceDataResponse getDeviceInfo(Integer device_id) {
-		Integer exists = jdbcTemplate.queryForObject("Select count(*) from digi_sign.device dd where dd.device_id="+device_id,Integer.class);
-		if(exists==1) {
-			Device device = jdbcTemplate.queryForObject("Select * from digi_sign.device dd where dd.device_id="+device_id,Device.class);
-		}
+	String sql="select device_id,device_desc,device_type,de.loc_id as loc_id,deloc.city_id as city_id,country,state,city,area,locality,de.profile_id as profile_id,profile_desc,height,width, is_Active from digi_sign.devices de,digi_sign.device_profile depro,digi_sign.location deloc,digi_sign.city decity\r\n" + 
+			"where de.device_id=" +device_id+ 
+			" and de.profile_id=depro.profile_id\r\n" + 
+			"and deloc.location_id=de.loc_id\r\n" + 
+			"and decity.city_id=deloc.city_id";
+	
+	List<DeviceDataResponse> queryForObject = jdbcTemplate.query(sql, new BeanPropertyRowMapper(DeviceDataResponse.class));
+	if(queryForObject.isEmpty())
+		return new DeviceDataResponse();
 		
 		
-		return null;
+		return queryForObject.get(0);
+	}
+	@Override
+	public List<DeviceDataResponse> getAllDevicesInfo() {
+	String sql="select device_id,device_desc,device_type,de.loc_id as loc_id,deloc.city_id as city_id,country,state,city,area,locality,de.profile_id as profile_id,profile_desc,height,width, is_Active from digi_sign.devices de,digi_sign.device_profile depro,digi_sign.location deloc,digi_sign.city decity\r\n" + 
+			"where "+
+			" de.profile_id=depro.profile_id\r\n" + 
+			"and deloc.location_id=de.loc_id\r\n" + 
+			"and decity.city_id=deloc.city_id";
+	
+	List<DeviceDataResponse> queryForObject = jdbcTemplate.query(sql, new BeanPropertyRowMapper(DeviceDataResponse.class));
+	if(queryForObject.isEmpty()) {
+		ArrayList<DeviceDataResponse> arrayList = new ArrayList<DeviceDataResponse>();
+		return arrayList;
+	}
+		
+		return queryForObject;
 	}
 
 }

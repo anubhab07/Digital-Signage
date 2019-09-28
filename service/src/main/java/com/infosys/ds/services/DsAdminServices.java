@@ -1,6 +1,7 @@
 package com.infosys.ds.services;
 
 import java.math.BigInteger;
+import java.util.List;
 
 import com.infosys.ds.model.City;
 import com.infosys.ds.model.DeviceProfile;
@@ -21,4 +22,6 @@ public interface DsAdminServices {
 	BigInteger createDevice(ProductRequest productRequest);
 
 	DeviceDataResponse getDeviceInfo(Integer device_id);
+
+	List<DeviceDataResponse> getAllDevicesInfo();
 }
