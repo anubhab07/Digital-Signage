@@ -45,7 +45,8 @@ public class DSClientController {
 					contentType = MimeTypeUtils.TEXT_HTML_VALUE;
 					break;
 				case 4:
-					String htmlContent = "<video controls><source type=\"" + content.getMimeType() + "\" src=\"data:"
+					String htmlContent = "<video controls autoplay style=\"width:" + content.getWidth() + "px;height:"
+							+ content.getHeight() + "px\"><source type=\"" + content.getMimeType() + "\" src=\"data:"
 							+ content.getMimeType() + ";base64," + content.getContentBody() + "\"></video>";
 					data = htmlContent.getBytes();
 					contentType = MimeTypeUtils.TEXT_HTML_VALUE;
