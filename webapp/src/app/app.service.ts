@@ -22,7 +22,7 @@ export class AppService {
   }
 
   getContent(deviceId){
-    let url = ' http://localhost:4200/getContent' + deviceId ;
+    let url = ' http://35.225.128.32:8080/fetchContent/' + deviceId ;
     return this._http.get(url);
   }
 

@@ -1,8 +1,8 @@
 <button (click)="submit()" mat-raised-button color="primary" class="submit-btn">Save</button>
 
-<as-split direction="horizontal" gutterSize="1" #mainContent>
+<as-split direction="horizontal" gutterSize="2" #mainContent>
   <as-split-area #innerBody *ngFor="let layout of layoutLstVert">
-    <as-split direction="vertical" *ngIf="layout.childArr.length > 0" gutterSize="1">
+    <as-split direction="vertical" *ngIf="layout.childArr.length > 0" gutterSize="2">
       <as-split-area *ngFor="let child of layout.childArr" #innerChild
         >
         <div class="content "  [id]="'chld-'+layout.idVert+'-'+child.idHorz">
@@ -11,7 +11,7 @@
                 <div class="centered">Drop your file here!</div>
             </div>
             <div *ngIf="child.file && child.type.substring(0,5)=='image'" >
-              <img [src]="child.url" class="sampleImg">
+              <img [src]="child.url" class="img-fluid">
             </div>
             <div *ngIf="child.file && child.type.substring(0,5)=='video'" >
               <!-- <img [src]="child.url" class="sampleImg"> -->

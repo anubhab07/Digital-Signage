@@ -1,10 +1,11 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import{AdminComponent} from '../admin/admin.component';
+import {AdminComponent} from '../admin/admin.component';
 import { Injectable } from '@angular/core';
-import {AppService}  from '../app.service'
+import {AppService} from '../app.service';
+import { Router } from '@angular/router';
 
-export interface DialogData {A
+export interface DialogData {
   res:string;
   Country: string;
   State:string;
@@ -42,12 +43,16 @@ export class MatcomponentComponent implements OnInit {
     {value: '2', viewValue: '1920*3840'}
   ];
   //this.res={{r.viewValue}}
-  constructor(private appService: AppService, public dialogRef: MatDialogRef<AdminComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(
+    private appService: AppService,
+    public dialogRef: MatDialogRef<AdminComponent>,
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    ) {
     }
 
 
-    
+
 
   ngOnInit() {
     this.data.res="720*1280";
@@ -56,9 +61,10 @@ export class MatcomponentComponent implements OnInit {
     this.dialogRef.close();
   }
   onOkClick(){
-    console.log(this.data)
+    console.log(this.data);
     this.appService.addProductInAPI(this.data);
-    this.appService.details=this.data;
+    this.appService.details = this.data;
+    this.router.navigateByUrl('layout/1');
   }
 
 }
