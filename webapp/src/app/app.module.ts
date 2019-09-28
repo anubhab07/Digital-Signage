@@ -22,6 +22,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {HttpClientModule} from '@angular/common/http';
 import {MatExpansionModule} from '@angular/material/expansion';
 
+import {MatButtonModule} from '@angular/material/button';
+import { DragDirective } from './drag-drop.directive';
 
 
 @NgModule({
@@ -31,6 +33,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     ClientComponent,
     LayoutComponent,
     MatcomponentComponent
+    DragDirective
   ],
   imports: [
     BrowserModule,

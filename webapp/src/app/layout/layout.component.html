@@ -1,21 +1,65 @@
-<as-split direction="horizontal" gutterSize="2">
-  <as-split-area size="4">
-    <as-split direction="vertical">
-      <as-split-area>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tiam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </p>
-      </as-split-area>
-      <as-split-area>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eodolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+<button (click)="submit()" mat-raised-button color="primary" class="submit-btn">Save</button>
+
+<as-split direction="horizontal" gutterSize="1" #mainContent>
+  <as-split-area #innerBody *ngFor="let layout of layoutLstVert">
+    <as-split direction="vertical" *ngIf="layout.childArr.length > 0" gutterSize="1">
+      <as-split-area *ngFor="let child of layout.childArr" #innerChild
+        >
+        <div class="content "  [id]="'chld-'+layout.idVert+'-'+child.idHorz">
+          <div class="content-body" >
+            <div *ngIf="!child.file" class="col-12 rmpm dropzone" appDrag (files)="filesDropped($event, layout, child)">
+                <div class="centered">Drop your file here!</div>
+            </div>
+            <div *ngIf="child.file && child.type.substring(0,5)=='image'" >
+              <img [src]="child.url" class="sampleImg">
+            </div>
+            <div *ngIf="child.file && child.type.substring(0,5)=='video'" >
+              <!-- <img [src]="child.url" class="sampleImg"> -->
+              <video autoplay #videoPlayer class="embed-responsive" loop muted playsinline>
+                  <source [src]="child.url" type="video/mp4" />
+                  Browser not supported
+              </video>
+            </div>
+          </div>
+          <div class="footer-split-div">
+              <!-- <button
+              mat-mini-fab
+              color="primary"
+              aria-label="Vertical Split"
+              label="uploadContent"
+            >
+              <mat-icon>add</mat-icon> -->
+              <!-- <input type="file" name="uploadContent" (change)="onFileChanged($event)"> -->
+            <!-- </button>&nbsp; -->
+            <button
+              mat-mini-fab
+              color="primary"
+              aria-label="Vertical Split"
+              (click)="splitVertical()"
+            >
+              <mat-icon>pause</mat-icon>
+            </button>
+            &nbsp;
+            <button
+              class="rotate-cw-90"
+              mat-mini-fab
+              color="primary"
+              aria-label="Horizontal split"
+              (click)="splitHorizontal(layout)"
+            >
+              <mat-icon>pause</mat-icon>
+            </button>
+          </div>
+        </div>
       </as-split-area>
     </as-split>
   </as-split-area>
-  <as-split-area>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, dolores sequi molestias, hic praesentium magnam eaque ullam odio possimus ad laborum laudantium illo rem totam, iste dolor quasi. Modi, nemo?
-  </as-split-area>
 </as-split>
+
+<ng-template #splitTemplate>
+  <as-split direction="vertical" gutterSize="1">
+    <as-split-area>
+      Test2
+    </as-split-area>
+  </as-split>
+</ng-template>
