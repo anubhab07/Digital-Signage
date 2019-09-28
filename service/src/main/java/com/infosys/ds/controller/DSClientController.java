@@ -13,6 +13,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.infosys.ds.exception.DSException;
 import com.infosys.ds.model.Content;
@@ -106,7 +107,7 @@ public class DSClientController {
 	}
 
 	@GetMapping("/fetchContent/{deviceId}")
-	public FetchContentResponse fetchContent(@PathVariable("deviceId") String deviceId) {
+	public @ResponseBody FetchContentResponse fetchContent(@PathVariable("deviceId") String deviceId) {
 
 		try {
 			return dsClientService.getContent();
