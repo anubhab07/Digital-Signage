@@ -37,6 +37,14 @@ public class Location {
 	public void setLocality(String locality) {
 		this.locality = locality;
 	}
-	
+	public Location(Integer cityId, String area, String locality) {
+		super();
+		this.cityId = cityId;
+		this.area = area;
+		this.locality = locality;
+	}
+	public Location() {
+		// TODO Auto-generated constructor stub
+	}
 
 }
