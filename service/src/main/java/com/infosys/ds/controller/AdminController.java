@@ -39,7 +39,7 @@ public class AdminController {
 		
 	}
 	
-	@PostMapping(path="/product",produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path="/createDevice",produces=MediaType.APPLICATION_JSON_VALUE)
 	public String getProfileId(@RequestBody ProductRequest productRequest) {
 	
 		

@@ -17,6 +17,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.infosys.ds.model.City;
 import com.infosys.ds.model.Device;
@@ -27,6 +28,7 @@ import com.infosys.ds.response.DeviceDataResponse;
 import com.infosys.ds.response.ProductRequest;
 
 @Service
+@CrossOrigin("*")
 public class DsAdminServicesImpl implements DsAdminServices {
 
 	@Autowired
