@@ -1,6 +1,17 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, TemplateRef } from '@angular/core';
 import { FileHandle } from '../drag-drop.directive';
 
+interface IChild {
+  idHorz: number;
+  type: string;
+  file: any;
+  domId: string;
+  startX: number;
+  startY: number;
+  width: number;
+  url: string;
+  height: number;
+}
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
@@ -24,25 +35,21 @@ export class LayoutComponent implements OnInit {
 
 
 
-  filesDropped(files, layout, child,inner): void {
-    console.log(files);
-    console.log(this.splitTemplate.nativeElement.offsetWidth);
-    console.log(this.splitTemplate.nativeElement.offsetHeight);
-    console.log(this.splitTemplate.nativeElement.offsetLeft);
-    console.log(this.splitTemplate.nativeElement.getBoundingClientRect());
+  filesDropped(files, layout, child): void {
     this.layoutLstVert.forEach(lay => {
       if (lay.idVert === layout.idVert) {
-        lay.childArr.forEach(chld => {
+        lay.childArr.forEach((chld: IChild) => {
           if (chld.idHorz === child.idHorz) {
             chld.file = files[0].file;
-            child.url = files[0].url;
+            chld.url = files[0].url;
+            chld.type = chld.file.type;
           }
         });
         // lay.childArr.file =
         // lay.childArr.url
       }
     });
-    console.log(this.layoutLstVert)
+    console.log(this.layoutLstVert);
   }
 
   splitVertical(tempRef) {
@@ -68,6 +75,22 @@ export class LayoutComponent implements OnInit {
     const file = event.target.files[0];
     console.log(file);
   }
+
+  submit() {
+    this.layoutLstVert.forEach(lay => {
+      lay.childArr.forEach((chld: IChild) => {
+        const domId = 'chld-' + lay.idVert + '-' + chld.idHorz;
+        chld.domId = domId;
+        const domElm = document.getElementById(domId);
+        chld.startX = domElm.getBoundingClientRect().top;
+        chld.startY = domElm.getBoundingClientRect().left;
+        chld.width = domElm.getBoundingClientRect().width;
+        chld.height = domElm.getBoundingClientRect().height;
+        console.log(chld);
+      });
+    });
+  }
+
 
   increaseVert() {
     this.counterVert++;

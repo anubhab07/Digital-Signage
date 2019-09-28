@@ -1,15 +1,24 @@
+<button (click)="submit()" mat-raised-button color="primary" class="submit-btn">Save</button>
+
 <as-split direction="horizontal" gutterSize="1" #mainContent>
   <as-split-area #innerBody *ngFor="let layout of layoutLstVert">
     <as-split direction="vertical" *ngIf="layout.childArr.length > 0" gutterSize="1">
       <as-split-area *ngFor="let child of layout.childArr" #innerChild
         >
-        <div class="content " >
+        <div class="content "  [id]="'chld-'+layout.idVert+'-'+child.idHorz">
           <div class="content-body" >
-            <div *ngIf="!child.file" class="col-12 rmpm dropzone" appDrag (files)="filesDropped($event, layout, child, innerChild)">
-                <div class="centered">Drop your file here!</div>
+            <div *ngIf="!child.file" class="col-12 rmpm dropzone" appDrag (files)="filesDropped($event, layout, child)">
+                <div class="centered">Drop your file here!{{'chld-'+layout.idVert+'-'+child.idHorz}}</div>
             </div>
-            <div *ngIf="child.file" >
+            <div *ngIf="child.file && child.type.substring(0,5)=='image'" >
               <img [src]="child.url" class="sampleImg">
+            </div>
+            <div *ngIf="child.file && child.type.substring(0,5)=='video'" >
+              <!-- <img [src]="child.url" class="sampleImg"> -->
+              <video autoplay #videoPlayer class="sampleImg" loop muted playsinline>
+                  <source [src]="child.url" type="video/mp4" />
+                  Browser not supported
+              </video>
             </div>
           </div>
           <div class="footer-split-div">

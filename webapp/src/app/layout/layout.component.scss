@@ -10,12 +10,12 @@
   // display: flex;
   // flex-direction: column;
   height:100%;
-  // overflow: hidden;
+  overflow: hidden;
   position: relative;
 }
 .content-body {
   height: 100%;
-  background-color: #ccc
+  // background-color: #ccc
 }
 // .content-body{
 //   background-image: url('../../assets/images/add-content.png');
@@ -79,4 +79,12 @@
   clear:both;
   bottom:0px;
   width: 100%
+}
+
+.submit-btn{
+  position: absolute;
+  float: right;
+  right:10px;
+  top:10px;
+  z-index:1001;
 }
