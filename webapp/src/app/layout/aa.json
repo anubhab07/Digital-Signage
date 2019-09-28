@@ -1,0 +1,40 @@
+[
+  {
+    "idVert": 1,
+    "childArr": [
+      {
+        "idHorz": 2,
+        "type": "image/png",
+        "file": {},
+        "base64Url":"",
+        "url": {
+          "changingThisBreaksApplicationSecurity": "blob:http://localhost:4200/9877acff-6d81-447c-8678-5a437a126ef3"
+        },
+        "domId": "chld-1-2",
+        "startX": 0,
+        "startY": 0,
+        "width": 543.5,
+        "height": 584
+      }
+    ]
+  },
+  {
+    "idVert": 2,
+    "childArr": [
+      {
+        "idHorz": 3,
+        "type": "video/mp4",
+        "file": {},
+        "base64Url":"",
+        "url": {
+          "changingThisBreaksApplicationSecurity": "blob:http://localhost:4200/9ec922e5-ee34-4f0e-ba8d-1a4ad842f8f2"
+        },
+        "domId": "chld-2-3",
+        "startX": 0,
+        "startY": 544.5,
+        "width": 543.5,
+        "height": 584
+      }
+    ]
+  }
+]

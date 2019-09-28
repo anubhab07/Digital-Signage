@@ -86,9 +86,10 @@ export class LayoutComponent implements OnInit {
         chld.startY = domElm.getBoundingClientRect().left;
         chld.width = domElm.getBoundingClientRect().width;
         chld.height = domElm.getBoundingClientRect().height;
-        console.log(chld);
+        // console.log(chld);
       });
     });
+    console.log(JSON.stringify(this.layoutLstVert))
   }
 
 

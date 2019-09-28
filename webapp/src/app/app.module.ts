@@ -32,7 +32,7 @@ import { DragDirective } from './drag-drop.directive';
     AdminComponent,
     ClientComponent,
     LayoutComponent,
-    MatcomponentComponent
+    MatcomponentComponent,
     DragDirective
   ],
   imports: [
@@ -42,6 +42,7 @@ import { DragDirective } from './drag-drop.directive';
     MatToolbarModule,
     MatSliderModule,
     MatIconModule,
+    MatButtonModule,
     MatSidenavModule,
     AngularSplitModule.forRoot(),
       MatDialogModule,
@@ -53,7 +54,7 @@ import { DragDirective } from './drag-drop.directive';
       MatSelectModule,
       HttpClientModule,
       MatExpansionModule
-      
+
   ],
   providers: [],
   bootstrap: [AppComponent],
