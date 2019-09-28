@@ -9,6 +9,7 @@ import{DialogData} from './/matcomponent/matcomponent.component';
 })
 export class AppService {
   details;
+  clientDetail;
   constructor(private _http: HttpClient) { }
   addProductInAPI(data:DialogData) {
     var headers = new Headers();

@@ -24,6 +24,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 
 import {MatButtonModule} from '@angular/material/button';
 import { DragDirective } from './drag-drop.directive';
+import { SanitizeHtmlPipe } from './sanitize-html.pipe';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { DragDirective } from './drag-drop.directive';
     ClientComponent,
     LayoutComponent,
     MatcomponentComponent,
-    DragDirective
+    DragDirective,
+    SanitizeHtmlPipe
   ],
   imports: [
     BrowserModule,

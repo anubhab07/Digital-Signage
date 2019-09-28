@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewContainerRef, ViewChild, TemplateRef } from '@angular/core';
 import { FileHandle } from '../drag-drop.directive';
 import { AppService } from '../app.service';
+import {Router} from '@angular/router';
 interface IChild {
   idHorz: number;
   type: string;
@@ -26,7 +27,11 @@ export class LayoutComponent implements OnInit {
   file;
   files: FileHandle[] = [];
 
-  constructor(private viewContainerRef: ViewContainerRef, private appService: AppService) { }
+  constructor(
+    private viewContainerRef: ViewContainerRef,
+    private appService: AppService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.layoutLstVert.push({ idVert: this.counterVert, childArr: [{ idHorz: this.counterHorz, type: 'pptx', file: '' }] });
@@ -118,11 +123,15 @@ export class LayoutComponent implements OnInit {
       });
     });
     const data = { childArr: this.layoutLstVert, height: window.screen.height, width: window.screen.width }
-    this.appService.saveNewLayout(data).subscribe(res => {
-      console.log(res);
+    this.appService.saveNewLayout(data).subscribe((res: any) => {
+      if (res.data) {
+        console.log(res.data)
+        this.appService.clientDetail = res.data;
+        this.router.navigateByUrl('client');
+      }
     });
 
-    console.log(JSON.stringify(this.layoutLstVert))
+    console.log(JSON.stringify(this.layoutLstVert));
   }
 
 

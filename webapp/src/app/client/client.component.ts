@@ -10,15 +10,17 @@ import {AppService}  from '../app.service';
 export class ClientComponent implements OnInit {
   panelOpenState = false;
   data;
-  constructor( private appService:AppService) { }
+  clientData;
+  constructor( private appService: AppService) { }
 
 
 
   ngOnInit() {
-    this.appService.getContent(129).subscribe( resgetData =>{
-      this.data=resgetData
-      console.log(this.data)
-    })
+    // this.appService.getContent(129).subscribe( resgetData =>{
+    //   this.data=resgetData
+    //   console.log(this.data)
+    // })
+    this.clientData = this.appService.clientDetail || '<iframe width="1366.0" height="768.0" src="http://35.225.128.32:8080/content/16" style="overflow:hidden;border:none" />';
   }
 
 }
