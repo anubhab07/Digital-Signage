@@ -36,6 +36,22 @@ public class DSClientService {
 
 	public String getPptContent(int contentId) throws DSException {
 		try {
+			String htmlContent = "<html>\r\n" + "<head>\r\n" + "<link rel=\"stylesheet\"\r\n"
+					+ "	href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\"\r\n"
+					+ "	integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\"\r\n"
+					+ "	crossorigin=\"anonymous\">\r\n" + "</head>\r\n" + "<body style=\"margin: 0; padding: 0\">\r\n"
+					+ "	<div id=\"carouselExampleSlidesOnly\" class=\"carousel slide\"\r\n"
+					+ "		data-ride=\"carousel\" data-interval=\"1000\">\r\n"
+					+ "		<div class=\"carousel-inner\">__INNER_CONTENT__</div>\r\n" + "	</div>\r\n"
+					+ "	<script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"\r\n"
+					+ "		integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\"\r\n"
+					+ "		crossorigin=\"anonymous\"></script>\r\n" + "	<script\r\n"
+					+ "		src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"\r\n"
+					+ "		integrity=\"sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q\"\r\n"
+					+ "		crossorigin=\"anonymous\"></script>\r\n" + "	<script\r\n"
+					+ "		src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"\r\n"
+					+ "		integrity=\"sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl\"\r\n"
+					+ "		crossorigin=\"anonymous\"></script>\r\n" + "</body>\r\n" + "</html>";
 			List<Integer> slides = dsClientRepository.fetchPptSlides(contentId);
 			StringBuilder content = new StringBuilder();
 			AtomicInteger count = new AtomicInteger(1);
@@ -45,9 +61,7 @@ public class DSClientService {
 						+ "\"><img class=\"d-block w-100\" src=\"" + env.getProperty("url.ppt.slides") + contentId + "/"
 						+ slide + "\"></div>");
 			});
-			return ContentUtils
-					.readFileData(Paths.get(getClass().getClassLoader().getResource("static/ppt.html").toURI()))
-					.replace("__INNER_CONTENT__", content.toString());
+			return htmlContent.replace("__INNER_CONTENT__", content.toString());
 		} catch (DSException e) {
 			throw e;
 		} catch (Exception e) {
