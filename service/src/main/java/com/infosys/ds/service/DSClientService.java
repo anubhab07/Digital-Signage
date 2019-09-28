@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.infosys.ds.exception.DSException;
 import com.infosys.ds.model.Content;
+import com.infosys.ds.model.FetchContentResponse;
 import com.infosys.ds.repository.DSClientRepository;
 
 @Service
@@ -77,6 +78,17 @@ public class DSClientService {
 		} catch (Exception e) {
 			log.error("Error in fetching slide content", e);
 			throw new DSException("Unable to fetch slide content !");
+		}
+	}
+
+	public FetchContentResponse getContent() throws DSException {
+		try {
+			return dsClientRepository.fetchContent();
+		} catch (DSException e) {
+			throw e;
+		} catch (Exception e) {
+			log.error("Error in fetching slide content", e);
+			throw new DSException("Unable to fetch content !");
 		}
 	}
 }

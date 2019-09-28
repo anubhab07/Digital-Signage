@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import com.infosys.ds.exception.DSException;
 import com.infosys.ds.model.Content;
 import com.infosys.ds.model.ContentType;
+import com.infosys.ds.model.FetchContentResponse;
 
 @Repository
 public class DSClientRepository {
@@ -106,6 +107,27 @@ public class DSClientRepository {
 					String data = null;
 					while (rs.next()) {
 						data = rs.getString(1);
+					}
+					return data;
+				}
+			});
+		} catch (Exception e) {
+			log.error("Error in fetching slide content", e);
+			throw new DSException("Unable to fetch content !");
+		}
+	}
+
+	public FetchContentResponse fetchContent() throws DSException {
+		try {
+			return jdbcTemplate.query(env.getProperty(""), new ResultSetExtractor<FetchContentResponse>() {
+
+				@Override
+				public FetchContentResponse extractData(ResultSet rs) throws SQLException, DataAccessException {
+					FetchContentResponse data = new FetchContentResponse();
+					while (rs.next()) {
+						data.setUrl(env.getProperty("url.content") + rs.getInt("content_id"));
+						data.setHeight(rs.getString("height"));
+						data.setWidth(rs.getString("width"));
 					}
 					return data;
 				}

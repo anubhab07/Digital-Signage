@@ -107,6 +107,12 @@ public class DSClientController {
 
 	@GetMapping("/fetchContent/{deviceId}")
 	public FetchContentResponse fetchContent(@PathVariable("deviceId") String deviceId) {
-		return null;
+
+		try {
+			return dsClientService.getContent();
+		} catch (Exception e) {
+			log.error("Error in writing response", e);
+			return null;
+		}
 	}
 }
