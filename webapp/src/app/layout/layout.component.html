@@ -8,14 +8,14 @@
         <div class="content "  [id]="'chld-'+layout.idVert+'-'+child.idHorz">
           <div class="content-body" >
             <div *ngIf="!child.file" class="col-12 rmpm dropzone" appDrag (files)="filesDropped($event, layout, child)">
-                <div class="centered">Drop your file here!{{'chld-'+layout.idVert+'-'+child.idHorz}}</div>
+                <div class="centered">Drop your file here!</div>
             </div>
             <div *ngIf="child.file && child.type.substring(0,5)=='image'" >
               <img [src]="child.url" class="sampleImg">
             </div>
             <div *ngIf="child.file && child.type.substring(0,5)=='video'" >
               <!-- <img [src]="child.url" class="sampleImg"> -->
-              <video autoplay #videoPlayer class="sampleImg" loop muted playsinline>
+              <video autoplay #videoPlayer class="embed-responsive" loop muted playsinline>
                   <source [src]="child.url" type="video/mp4" />
                   Browser not supported
               </video>
