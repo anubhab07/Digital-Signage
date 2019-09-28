@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infosys.ds.model.ContentDimenssion;
 import com.infosys.ds.service.ContentService;
 
@@ -28,6 +29,7 @@ public class ContentController {
 	@PostMapping("/saveContent")
 	public @ResponseBody Map<String, Object> saveContent(@RequestBody ContentDimenssion data, HttpServletResponse res) {
 		try {
+			log.info("Conten: {}", new ObjectMapper().writeValueAsString(data));
 			Map<String, Object> response = new HashMap<>();
 			response.put("data", contentService.saveContent(data));
 			return response;
