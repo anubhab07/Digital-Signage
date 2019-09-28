@@ -92,4 +92,23 @@ public class ContentUtils {
 			throw new DSException("Unable to save content !");
 		}
 	}
+
+	public static byte[] resize(byte[] image, int scaledWidth, int scaledHeight) throws IOException {
+		// reads input image
+		BufferedImage inputImage = ImageIO.read(new ByteArrayInputStream(image));
+
+		// creates output image
+		BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, inputImage.getType());
+
+		// scales the input image to the output image
+		Graphics2D g2d = outputImage.createGraphics();
+		g2d.drawImage(inputImage, 0, 0, scaledWidth, scaledHeight, null);
+		g2d.dispose();
+
+		ByteArrayOutputStream outputImageStream = new ByteArrayOutputStream();
+
+		// writes to output file
+		ImageIO.write(outputImage, "png", outputImageStream);
+		return outputImageStream.toByteArray();
+	}
 }

@@ -1,6 +1,5 @@
 package com.infosys.ds.service;
 
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.infosys.ds.exception.DSException;
 import com.infosys.ds.model.Content;
 import com.infosys.ds.repository.DSClientRepository;
-import com.infosys.ds.util.ContentUtils;
 
 @Service
 public class DSClientService {

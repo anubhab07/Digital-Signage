@@ -50,6 +50,9 @@ public class DSClientController {
 				default:
 					data = ContentUtils.base64Decode(content.getContentBody());
 					contentType = ContentUtils.getConetentType(data);
+					if (contentType != null && (contentType.toLowerCase().startsWith("image")
+							|| contentType.toLowerCase().contains("png") || contentType.toLowerCase().contains("jpg")))
+						data = ContentUtils.resize(data, content.getWidth(), content.getHeight());
 				}
 				response.setContentType(contentType);
 				OutputStream os = response.getOutputStream();
