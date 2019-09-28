@@ -13,9 +13,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.infosys.ds.exception.DSException;
 import com.infosys.ds.model.Content;
+import com.infosys.ds.model.FetchContentResponse;
 import com.infosys.ds.service.DSClientService;
 import com.infosys.ds.util.ContentUtils;
 
@@ -49,7 +51,10 @@ public class DSClientController {
 					break;
 				default:
 					data = ContentUtils.base64Decode(content.getContentBody());
-					contentType = ContentUtils.getConetentType(data);
+					if (!StringUtils.isEmpty(content.getMimeType()))
+						contentType = content.getMimeType();
+					else
+						contentType = ContentUtils.getConetentType(data);
 					if (contentType != null && (contentType.toLowerCase().startsWith("image")
 							|| contentType.toLowerCase().contains("png") || contentType.toLowerCase().contains("jpg")))
 						data = ContentUtils.resize(data, content.getWidth(), content.getHeight());
@@ -92,5 +97,10 @@ public class DSClientController {
 		} catch (Exception e) {
 			log.error("Error in writing response", e);
 		}
+	}
+
+	@GetMapping("/fetchContent/{deviceId}")
+	public FetchContentResponse fetchContent(@PathVariable("deviceId") String deviceId) {
+		return null;
 	}
 }

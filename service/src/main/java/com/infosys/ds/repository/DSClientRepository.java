@@ -52,6 +52,7 @@ public class DSClientRepository {
 						data.getContentType().setContentTypeCd(rs.getInt("content_type_cd"));
 						data.setHeight(rs.getInt("height"));
 						data.setWidth(rs.getInt("width"));
+						data.setMimeType(rs.getString("mime_type"));
 					}
 					return data;
 				}

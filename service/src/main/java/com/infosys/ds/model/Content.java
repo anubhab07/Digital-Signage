@@ -13,6 +13,7 @@ public class Content {
 	private LocalDateTime updatedAt;
 	private Integer updatedBy;
 	private ContentType contentType;
+	private String mimeType;
 
 	public Integer getContentId() {
 		return contentId;
@@ -84,6 +85,14 @@ public class Content {
 
 	public void setContentType(ContentType contentType) {
 		this.contentType = contentType;
+	}
+
+	public String getMimeType() {
+		return mimeType;
+	}
+
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
 	}
 
 }
