@@ -13,7 +13,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.infosys.ds.exception.DSException;
 import com.infosys.ds.model.Content;
@@ -43,6 +42,12 @@ public class DSClientController {
 					break;
 				case 2:
 					data = dsClientService.getPptContent(contentId).getBytes();
+					contentType = MimeTypeUtils.TEXT_HTML_VALUE;
+					break;
+				case 4:
+					String htmlContent = "<video controls><source type=\"" + content.getMimeType() + "\" src=\"data:"
+							+ content.getMimeType() + ";base64," + content.getContentBody() + "\"></video>";
+					data = htmlContent.getBytes();
 					contentType = MimeTypeUtils.TEXT_HTML_VALUE;
 					break;
 				case 5:
