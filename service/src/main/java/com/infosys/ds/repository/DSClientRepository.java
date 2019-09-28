@@ -119,19 +119,20 @@ public class DSClientRepository {
 
 	public FetchContentResponse fetchContent() throws DSException {
 		try {
-			return jdbcTemplate.query(env.getProperty(""), new ResultSetExtractor<FetchContentResponse>() {
+			return jdbcTemplate.query(env.getProperty("sql.fetch.content"),
+					new ResultSetExtractor<FetchContentResponse>() {
 
-				@Override
-				public FetchContentResponse extractData(ResultSet rs) throws SQLException, DataAccessException {
-					FetchContentResponse data = new FetchContentResponse();
-					while (rs.next()) {
-						data.setUrl(env.getProperty("url.content") + rs.getInt("content_id"));
-						data.setHeight(rs.getString("height"));
-						data.setWidth(rs.getString("width"));
-					}
-					return data;
-				}
-			});
+						@Override
+						public FetchContentResponse extractData(ResultSet rs) throws SQLException, DataAccessException {
+							FetchContentResponse data = new FetchContentResponse();
+							while (rs.next()) {
+								data.setUrl(env.getProperty("url.content") + rs.getInt("content_id"));
+								data.setHeight(rs.getString("height"));
+								data.setWidth(rs.getString("width"));
+							}
+							return data;
+						}
+					});
 		} catch (Exception e) {
 			log.error("Error in fetching slide content", e);
 			throw new DSException("Unable to fetch content !");
