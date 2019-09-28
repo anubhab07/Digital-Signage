@@ -24,4 +24,12 @@ export class AppService {
     let url = ' http://localhost:4200/getContent' + deviceId ;
     return this._http.get(url);
   }
+
+  getDashboardData() {
+    return this._http.get('assets/data/fetchAllDevices.json');
+  }
+
+  saveNewLayout(data) {
+    return this._http.post('http://35.225.128.32:8080/saveContent', data, {});
+  }
 }

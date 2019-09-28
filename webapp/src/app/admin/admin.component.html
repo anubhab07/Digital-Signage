@@ -1,6 +1,19 @@
-
-<ol>
-    <li>      
-      <button mat-button  (click)="openDialog()">Pick one</button>
-    </li>
-  </ol>
+<button mat-raised-button color="primary" class="add-btn" (click)="openDialog()">Add</button>
+<!-- <button mat-button  (click)="openDialog()">Pick one</button> -->
+<br><br><br>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let layout of layoutLst">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{layout.device_Type}}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{layout.device_Desc}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <span class="mr-3"><b>Resolution: </b>{{layout.profile_desc}}</span>
+    <span class="mr-3"><b>Locality: </b>{{layout.locality}}&emsp;&emsp;&emsp;</span>
+    <b>Address: </b>{{layout.area}},&nbsp;{{layout.city}},&nbsp;{{layout.state}}, &nbsp;{{layout.country}}
+    <button mat-raised-button color="primary" class="open-btn">Open</button>
+  </mat-expansion-panel>
+</mat-accordion>

@@ -58,6 +58,6 @@ import { DragDirective } from './drag-drop.directive';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents:[MatcomponentComponent]
+  entryComponents: [MatcomponentComponent]
 })
 export class AppModule { }
